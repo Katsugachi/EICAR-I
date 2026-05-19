@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Not suspicious</title>
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --fg: #111;
+      --muted: #666;
+      --card: #ffffff;
+      --border: #e6e6e6;
+      --btn: #111;
+      --btn-hover: #2a2a2a;
+      --radius: 18px;
+      --font: "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", "Quicksand", "Varela Round", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--fg);
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      width: min(520px, 92vw);
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+    p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    button {
+      border: 0;
+      background: var(--btn);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 150ms ease;
+    }
+    button:hover { background: var(--btn-hover); }
+    code {
+      display: block;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>EICAR String</h1>
+    <p>you should download this!</p>
+    <button id="download">Download Safe Download</button>
+    <code id="preview"></code>
+  </div>
+
+  <script>
+    const eicar = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*";
+    document.getElementById("preview").textContent = eicar;
+
+    document.getElementById("download").addEventListener("click", () => {
+      const blob = new Blob([eicar], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "EICAR.txt";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
