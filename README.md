@@ -1,0 +1,2 @@
+# EICAR-I
+test thingy
